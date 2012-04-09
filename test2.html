@@ -45,11 +45,6 @@
 				<section>
 					<h2>article section h2</h2>
 					<!-- JavaScript Widget -->
-					<div id="zenback"></div>
-				</section>
-				<section>
-					<h2>article section h2</h2>
-					<!-- JavaScript Widget -->
 					<div id="gist"></div>
 				</section>
 				<footer>
@@ -86,10 +81,6 @@
 </script>
 
 <!-- Replace pattern -->
-<div id="zenback-hide" style="display:none; visibility:hidden;">
-	<script>document.write(unescape("%3Cscript")+" src='http://widget.zenback.jp/?base_uri=http%3A//tokkono.cute.coocan.jp/blog/slow/&amp;nsid=94430799432011990%3A%3A94430807753553105&amp;rand="+Math.ceil((new Date()*1)*Math.random())+"' type='text/javascript'"+unescape("%3E%3C/script%3E"));</script>
-</div>
-
 <div id="gist-hide" style="display:none; visibility:hidden;">
 	<script src="https://gist.github.com/1577100.js?file=tag_cloud.rb"></script>
 </div>
@@ -101,7 +92,7 @@
 
 <script>
 $(function() {
-	var id = "zenback gist jsdoit".split(" ");
+	var id = "gist jsdoit".split(" ");
 	var n = id.length, i, src, dst;
 	for (i = 0; i < n; i++) {
 		src = document.getElementById(id[i] + '-hide');
