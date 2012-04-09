@@ -1,0 +1,52 @@
+<!doctype html>
+<html>
+<head>
+<style type="text/css">
+	body, iframe { margin: 0; padding: 0; }
+</style>
+<script>
+function onloadIframe() {
+	var a = document.body,
+		b = document.documentElement,
+		c = Math.max(a.offsetTop, 0),
+		d = Math.max(b.offsetTop, 0),
+		e = a.scrollHeight + c,
+		f = a.offsetHeight + c,
+		g = b.scrollHeight + d,
+		h = b.offsetHeight + d,
+		i = Math.max(e, f, g, h);
+	if (b.clientTop > 0) i += (b.clientTop * 2);
+	var iframe = window.frameElement;
+	window.parent.document.getElementById(iframe.id).style.height = i + "px";
+//	window.parent.console.log("onloadIframe(" + iframe.id + ":" + i + ")");
+	if (i < iframe.min_height) {
+		setTimeout(onloadIframe, 1000);
+	}
+}
+</script>
+</head>
+<body>
+<script>
+	// Some scripts need canonical link
+	var links = window.parent.document.getElementsByTagName('link'),
+		n = links.length;
+	while (--n >= 0) {
+		if (links[n].getAttribute('rel') === 'canonical') {
+			var link = document.createElement('link');
+			link.setAttribute('rel', 'canonical');
+			link.setAttribute('href', links[n].getAttribute('href'));
+			document.getElementsByTagName('head')[0].appendChild(link);
+			break;
+		}
+	}
+
+	if (window.addEventListener) {
+		window.addEventListener("load", onloadIframe, false);
+	} else {
+		window.attachEvent("onload", onloadIframe);
+	}
+
+	document.write('<scr' + 'ipt src="' + window.frameElement.script_src + '"><\/scr' + 'ipt>');
+</script>
+</body>
+</html>
