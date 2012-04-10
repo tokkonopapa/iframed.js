@@ -10,17 +10,13 @@
  * Free to use and abuse under the MIT license.
  * http://www.opensource.org/licenses/mit-license.php
  */
-function createIframe(id, script_src, style, min_height) {
-	// Sanitizing
-	min_height = min_height ? min_height.replace(/px/, "") : '0';
-	min_height = min_height.replace(/"/g, "&quot;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
-	script_src = script_src.replace(/"/g, "&quot;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
-
-	// Setup
+function createIframe(id, script_src, style, min_height, stylesheet) {
+	// Keep params in iframe object
 	var iframe = document.createElement('iframe');
 	iframe.id = id + '-iframe';
-	iframe.script_src = script_src;
-	iframe.min_height = min_height;
+	iframe.min_height = min_height ? min_height.replace(/px/, "") : '0';
+	iframe.script_src = script_src ? script_src.replace(/"/g, "&quot;").replace(/</g, "&lt;").replace(/>/g, "&gt;") : null;
+	iframe.stylesheet = stylesheet ? stylesheet.replace(/"/g, "&quot;").replace(/</g, "&lt;").replace(/>/g, "&gt;") : null;
 
 	// Styles
 	iframe.setAttribute('style', style);
@@ -40,6 +36,11 @@ function createIframe(id, script_src, style, min_height) {
 			html += '<link rel="canonical" href="' + links[n].getAttribute('href') + '" \/>';
 			break;
 		}
+	}
+
+	// Add stylesheet
+	if (iframe.stylesheet) {
+		html += '<link rel="stylesheet" type="text/css" href="' + iframe.stylesheet + '" media="all" \/>';
 	}
 
 	// Reset some styles
@@ -71,8 +72,8 @@ function createIframe(id, script_src, style, min_height) {
 
 	// Script loading
 	html += '<\/head>';
-	html += '<body onload="onloadIframe(\'' + iframe.id + '\', ' + min_height + ')">';
-	html += '<script type="text/javascript" src="' + script_src + '"><\/script>';
+	html += '<body onload="onloadIframe()">';
+	html += '<script type="text/javascript" src="' + iframe.script_src + '"><\/script>';
 /*	html += '<\/body>';*/
 
 	// Inject contents into iframe
@@ -98,14 +99,14 @@ function createIframe(id, script_src, style, min_height) {
 /*
  * Helper function to invoke creating iframe after onload
  */
-function lazyLoadIframe(id, script_src, style, min_height) {
+function lazyLoadIframe(id, script_src, style, min_height, stylesheet) {
 	if (window.addEventListener) {
 		window.addEventListener('load', function() {
-			createIframe(id, script_src, style, min_height);
+			createIframe(id, script_src, style, min_height, stylesheet);
 		}, false);
 	} else {
 		window.attachEvent('onload', function() {
-			createIframe(id, script_src, style, min_height);
+			createIframe(id, script_src, style, min_height, stylesheet);
 		});
 	}
 }

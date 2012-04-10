@@ -40,13 +40,25 @@ function onloadIframe() {
 		}
 	}
 
+	// Add stylesheet
+	var iframe = window.frameElement;
+	if (iframe.stylesheet) {
+		var link = document.createElement('link');
+		link.setAttribute('rel', 'stylesheet');
+		link.setAttribute('type', 'text/css');
+		link.setAttribute('href', iframe.stylesheet);
+		document.getElementsByTagName('head')[0].appendChild(link);
+	}
+
+	// Onload event handler
 	if (window.addEventListener) {
 		window.addEventListener("load", onloadIframe, false);
 	} else {
 		window.attachEvent("onload", onloadIframe);
 	}
 
-	document.write('<scr' + 'ipt src="' + window.frameElement.script_src + '"><\/scr' + 'ipt>');
+	// Load script
+	document.write('<scr' + 'ipt src="' + iframe.script_src + '"><\/scr' + 'ipt>');
 </script>
 </body>
 </html>
