@@ -1,13 +1,18 @@
 /*
- * iframed.js
+ * iframed.js v1.0
+ * https://github.com/tokkonopapa/iframed.js
  *
  * iframed.js is an asynchronous loader for 3rd party's javascript.
  * It improves site response even if javascript uses document.write()
  * in a recursive way.
+ *
+ * Copyright 2012, tokkonopapa
+ * Free to use and abuse under the MIT license.
+ * http://www.opensource.org/licenses/mit-license.php
  */
 function createIframe(id, script_src, style, min_height) {
 	// Sanitizing
-	min_height = min_height ? min_height.replace(/px/g, "") : '0';
+	min_height = min_height ? min_height.replace(/px/, "") : '0';
 	min_height = min_height.replace(/"/g, "&quot;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
 	script_src = script_src.replace(/"/g, "&quot;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
 
