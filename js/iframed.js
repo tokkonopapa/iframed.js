@@ -11,9 +11,6 @@
  * http://www.opensource.org/licenses/mit-license.php
  */
 function createIframe(id, script_src, style, min_height, stylesheet) {
-	var target = document.getElementById(id);
-	if (target == null) { return; }
-
 	// Keep params in iframe object
 	var iframe = document.createElement('iframe');
 	iframe.id = id + '-iframe';
@@ -26,7 +23,7 @@ function createIframe(id, script_src, style, min_height, stylesheet) {
 	iframe.setAttribute('frameborder', 0);
 
 	// Attach first to make body in iframe
-	target.appendChild(iframe);
+	document.getElementById(id).appendChild(iframe);
 
 	// Contents in iframe
 	var html = '<head>';
@@ -103,13 +100,15 @@ function createIframe(id, script_src, style, min_height, stylesheet) {
  * Helper function to invoke creating iframe after onload
  */
 function lazyLoadIframe(id, script_src, style, min_height, stylesheet) {
-	if (window.addEventListener) {
-		window.addEventListener('load', function() {
-			createIframe(id, script_src, style, min_height, stylesheet);
-		}, false);
-	} else {
-		window.attachEvent('onload', function() {
-			createIframe(id, script_src, style, min_height, stylesheet);
-		});
+	if (document.getElementById(id)) {
+		if (window.addEventListener) {
+			window.addEventListener('load', function() {
+				createIframe(id, script_src, style, min_height, stylesheet);
+			}, false);
+		} else {
+			window.attachEvent('onload', function() {
+				createIframe(id, script_src, style, min_height, stylesheet);
+			});
+		}
 	}
 }
