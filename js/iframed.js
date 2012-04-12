@@ -87,7 +87,7 @@ function createIframe(id, script_src, style, min_height, stylesheet) {
 //		iframe.src = 'javascript:window["contents"]';
 	} else {
 		// Dynamic injection
-		iframe.src = 'about:blank';
+//		iframe.src = 'about:blank'; // It impairs YSLOW 'Avoid empty src or href'
 		var doc = (iframe.contentWindow || iframe.contentDocument);
 		if (doc.document) { doc = doc.document };
 		doc.open();
