@@ -11,6 +11,9 @@
  * http://www.opensource.org/licenses/mit-license.php
  */
 function createIframe(id, script_src, style, min_height, stylesheet) {
+	var target = document.getElementById(id);
+	if (target == null) { return; }
+
 	// Keep params in iframe object
 	var iframe = document.createElement('iframe');
 	iframe.id = id + '-iframe';
@@ -23,7 +26,7 @@ function createIframe(id, script_src, style, min_height, stylesheet) {
 	iframe.setAttribute('frameborder', 0);
 
 	// Attach first to make body in iframe
-	document.getElementById(id).appendChild(iframe);
+	target.appendChild(iframe);
 
 	// Contents in iframe
 	var html = '<head>';
@@ -87,7 +90,7 @@ function createIframe(id, script_src, style, min_height, stylesheet) {
 //		iframe.src = 'javascript:window["contents"]';
 	} else {
 		// Dynamic injection
-//		iframe.src = 'about:blank'; // It impairs YSLOW 'Avoid empty src or href'
+//		iframe.src = 'about:blank'; // It impairs YSlow 'Avoid empty src or href'
 		var doc = (iframe.contentWindow || iframe.contentDocument);
 		if (doc.document) { doc = doc.document };
 		doc.open();
