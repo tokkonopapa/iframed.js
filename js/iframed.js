@@ -100,15 +100,13 @@ function createIframe(id, script_src, style, min_height, stylesheet) {
  * Helper function to invoke creating iframe after onload
  */
 function lazyLoadIframe(id, script_src, style, min_height, stylesheet) {
-	if (document.getElementById(id)) {
-		if (window.addEventListener) {
-			window.addEventListener('load', function() {
-				createIframe(id, script_src, style, min_height, stylesheet);
-			}, false);
-		} else {
-			window.attachEvent('onload', function() {
-				createIframe(id, script_src, style, min_height, stylesheet);
-			});
-		}
+	if (window.addEventListener) {
+		window.addEventListener('load', function() {
+			createIframe(id, script_src, style, min_height, stylesheet);
+		}, false);
+	} else {
+		window.attachEvent('onload', function() {
+			createIframe(id, script_src, style, min_height, stylesheet);
+		});
 	}
 }
