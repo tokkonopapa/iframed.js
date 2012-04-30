@@ -19,7 +19,8 @@ function createIframe(id, script_src, style, min_height, stylesheet) {
 	iframe.stylesheet = stylesheet ? stylesheet.replace(/"/g, "&quot;").replace(/</g, "&lt;").replace(/>/g, "&gt;") : null;
 
 	// Styles
-	iframe.setAttribute('style', style);
+	// http://nanto.asablo.jp/blog/2005/10/29/123294
+	iframe.style.cssText = style;
 	iframe.setAttribute('frameborder', 0);
 
 	// Attach first to make body in iframe
