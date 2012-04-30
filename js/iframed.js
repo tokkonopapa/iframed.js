@@ -19,8 +19,12 @@ function createIframe(id, script_src, style, min_height, stylesheet) {
 	iframe.stylesheet = stylesheet ? stylesheet.replace(/"/g, "&quot;").replace(/</g, "&lt;").replace(/>/g, "&gt;") : null;
 
 	// Styles
-	iframe.setAttribute('style', style);
+	// http://nanto.asablo.jp/blog/2005/10/29/123294
+	iframe.style.cssText = style;
 	iframe.setAttribute('frameborder', 0);
+	iframe.setAttribute('scrolling', 'no');
+	iframe.setAttribute('marginheight', 0);
+	iframe.setAttribute('marginwidth', 0);
 
 	// Attach first to make body in iframe
 	document.getElementById(id).appendChild(iframe);
@@ -78,9 +82,10 @@ function createIframe(id, script_src, style, min_height, stylesheet) {
 
 	// Inject contents into iframe
 	var isMSIE = /*@cc_on!@*/false;
-	if (isMSIE) {
+	var isOpera = (navigator.userAgent.indexOf('Opera') >= 0);
+	if (isMSIE || isOpera) {
 		// friendly iframe
-		iframe.src = 'fiframe.html';
+		iframe.src = '/fiframe.html';
 
 		// javascript: URI
 //		iframe.contentWindow.contents = html;
