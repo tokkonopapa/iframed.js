@@ -22,6 +22,9 @@ function createIframe(id, script_src, style, min_height, stylesheet) {
 	// http://nanto.asablo.jp/blog/2005/10/29/123294
 	iframe.style.cssText = style;
 	iframe.setAttribute('frameborder', 0);
+	iframe.setAttribute('scrolling', 'no');
+	iframe.setAttribute('marginheight', 0);
+	iframe.setAttribute('marginwidth', 0);
 
 	// Attach first to make body in iframe
 	document.getElementById(id).appendChild(iframe);
