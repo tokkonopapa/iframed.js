@@ -80,7 +80,7 @@ function createIframe(id, script_src, style, min_height, stylesheet) {
 	var isMSIE = /*@cc_on!@*/false;
 	if (isMSIE) {
 		// friendly iframe
-		iframe.src = 'fiframe.html';
+		iframe.src = '/fiframe.html';
 
 		// javascript: URI
 //		iframe.contentWindow.contents = html;
