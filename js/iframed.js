@@ -82,7 +82,8 @@ function createIframe(id, script_src, style, min_height, stylesheet) {
 
 	// Inject contents into iframe
 	var isMSIE = /*@cc_on!@*/false;
-	if (isMSIE) {
+	var isOpera = (navigator.userAgent.indexOf('Opera') >= 0);
+	if (isMSIE || isOpera) {
 		// friendly iframe
 		iframe.src = '/fiframe.html';
 
