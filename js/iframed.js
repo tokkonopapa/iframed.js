@@ -1,5 +1,5 @@
 /*
- * iframed.js v1.0
+ * iframed.js v1.1
  * https://github.com/tokkonopapa/iframed.js
  *
  * iframed.js is an asynchronous loader for 3rd party's javascript.
@@ -33,9 +33,7 @@ function createIframe(id, script_src, style, min_height, stylesheet) {
 	var html = '<head>';
 
 	// Some scripts need canonical link
-	var links = document.getElementsByTagName('link'),
-		n = links.length;
-	while (--n >= 0) {
+	for (var links = document.getElementsByTagName('link'), n = links.length; --n >= 0;) {
 		if (links[n].getAttribute('rel') === 'canonical') {
 			html += '<link rel="canonical" href="' + links[n].getAttribute('href') + '" \/>';
 			break;
@@ -55,6 +53,14 @@ function createIframe(id, script_src, style, min_height, stylesheet) {
 	// Onload event handler
 	html += '<script type="text/javascript">';
 	html += 'function onloadIframe() {';
+	html += '	for (var a = document.getElementsByTagName("a"), b = a.length, c; --b >= 0;) {';
+	html += '		c = a[b].getAttribute("target");';
+	html += '		if (c == "_top") {';
+	html += '			break;';
+	html += '		} else if (c != "_blank") {';
+	html += '			a[b].setAttribute("target", "_top");';
+	html += '		}';
+	html += '	}';
 	html += '	var a = document.body,';
 	html += '		b = document.documentElement,';
 	html += '		c = Math.max(a.offsetTop, 0),';

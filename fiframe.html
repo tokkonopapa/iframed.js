@@ -6,6 +6,14 @@
 </style>
 <script>
 function onloadIframe() {
+	for (var a = document.getElementsByTagName("a"), b = a.length, c; --b >= 0;) {
+		c = a[b].getAttribute("target");
+		if (c == "_top") {
+			break;
+		} else if (c != "_blank") {
+			a[b].setAttribute("target", "_top");
+		}
+	}
 	var a = document.body,
 		b = document.documentElement,
 		c = Math.max(a.offsetTop, 0),
@@ -27,38 +35,36 @@ function onloadIframe() {
 </head>
 <body>
 <script>
-	// Some scripts need canonical link
-	var links = window.parent.document.getElementsByTagName('link'),
-		n = links.length;
-	while (--n >= 0) {
-		if (links[n].getAttribute('rel') === 'canonical') {
-			var link = document.createElement('link');
-			link.setAttribute('rel', 'canonical');
-			link.setAttribute('href', links[n].getAttribute('href'));
-			document.getElementsByTagName('head')[0].appendChild(link);
-			break;
-		}
-	}
-
-	// Add stylesheet
-	var iframe = window.frameElement;
-	if (iframe.stylesheet) {
+// Some scripts need canonical link
+for (var links = window.parent.document.getElementsByTagName('link'), n = links.length; --n >= 0;) {
+	if (links[n].getAttribute('rel') === 'canonical') {
 		var link = document.createElement('link');
-		link.setAttribute('rel', 'stylesheet');
-		link.setAttribute('type', 'text/css');
-		link.setAttribute('href', iframe.stylesheet);
+		link.setAttribute('rel', 'canonical');
+		link.setAttribute('href', links[n].getAttribute('href'));
 		document.getElementsByTagName('head')[0].appendChild(link);
+		break;
 	}
+}
 
-	// Onload event handler
-	if (window.addEventListener) {
-		window.addEventListener("load", onloadIframe, false);
-	} else {
-		window.attachEvent("onload", onloadIframe);
-	}
+// Add stylesheet
+var iframe = window.frameElement;
+if (iframe.stylesheet) {
+	var link = document.createElement('link');
+	link.setAttribute('rel', 'stylesheet');
+	link.setAttribute('type', 'text/css');
+	link.setAttribute('href', iframe.stylesheet);
+	document.getElementsByTagName('head')[0].appendChild(link);
+}
 
-	// Load script
-	document.write('<scr' + 'ipt src="' + iframe.script_src + '"><\/scr' + 'ipt>');
+// Onload event handler
+if (window.addEventListener) {
+	window.addEventListener("load", onloadIframe, false);
+} else {
+	window.attachEvent("onload", onloadIframe);
+}
+
+// Load script
+document.write('<scr' + 'ipt src="' + iframe.script_src + '"><\/scr' + 'ipt>');
 </script>
 </body>
 </html>
