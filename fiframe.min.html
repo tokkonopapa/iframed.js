@@ -1,0 +1,16 @@
+<!doctype html>
+<html>
+<head>
+<style type="text/css">
+body,iframe{margin:0;padding:0}
+</style>
+<script>
+function onloadIframe(){for(var a=document.getElementsByTagName("a"),b=a.length,c;0<=--b&&!(c=a[b].getAttribute("target"),"_top"==c);)"_blank"!=c&&a[b].setAttribute("target","_top");a=document.body;b=document.documentElement;c=Math.max(a.offsetTop,0);var d=Math.max(b.offsetTop,0),a=Math.max(a.scrollHeight+c,a.offsetHeight+c,b.scrollHeight+d,b.offsetHeight+d);0<b.clientTop&&(a+=2*b.clientTop);b=window.frameElement;window.parent.document.getElementById(b.id).style.height=a+"px";a<b.min_height&&setTimeout(onloadIframe,1E3)};
+</script>
+</head>
+<body>
+<script>
+for(var links=window.parent.document.getElementsByTagName("link"),n=links.length;0<=--n;)if("canonical"===links[n].getAttribute("rel")){var link=document.createElement("link");link.setAttribute("rel","canonical");link.setAttribute("href",links[n].getAttribute("href"));document.getElementsByTagName("head")[0].appendChild(link);break}var iframe=window.frameElement;iframe.stylesheet&&(link=document.createElement("link"),link.setAttribute("rel","stylesheet"),link.setAttribute("type","text/css"),link.setAttribute("href",iframe.stylesheet),document.getElementsByTagName("head")[0].appendChild(link));window.addEventListener?window.addEventListener("load",onloadIframe,!1):window.attachEvent("onload",onloadIframe);document.write('<script src="'+iframe.script_src+'"><\/script>');
+</script>
+</body>
+</html>
