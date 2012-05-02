@@ -12,7 +12,7 @@ iframed.js includes two method.
 
 Licence
 -------
-Copyright &copy; 2012 tokkonopapa
+Copyright &copy; 2012 tokkonopapa  
 Free to use and abuse under the [MIT license][MIT].
  
 [MIT]: http://www.opensource.org/licenses/mit-license.php
