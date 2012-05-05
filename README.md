@@ -42,7 +42,7 @@ Create iframe when onload is fired.
 Notice
 ------
 Make sure to set the right path to `fiframe.html` of `fiframe.min.html` in the 
-`iframed.js` or `iframe.min.js` to fit your environment.
+`iframed.js` or `iframed.min.js` to fit your environment.
 
 License
 -------
