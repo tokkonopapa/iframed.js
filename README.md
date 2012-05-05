@@ -37,7 +37,7 @@ Create iframe when onload is fired.
 
 ### Crating iframe ###
 
-	createIframe(id, url, styles, min_height, stylesheet)
+    createIframe(id, url, styles, [min_height], [stylesheet])
 
 Notice
 ------
