@@ -14,10 +14,11 @@ iframed.js includes two method.
 
 Usage
 -----
-### Lazy loading ###
-Create iframe when onload is fired.
+### Asynchronous loading ###
 
-    lazyLoadIframe(id, url, styles, [min_height], [stylesheet])
+Load script asynchronously through iframe.
+
+    createIframe(id, url, styles, [min_height], [stylesheet])
 
 *   `id` :  
     ID of box element where iframe will be injected.
@@ -35,9 +36,15 @@ Create iframe when onload is fired.
 *   `stylesheet` : (option)  
     URL or path to style sheet for iframe.
 
-### Crating iframe ###
+### Lazy loading ###
+Load script through iframe when onload is fired. `createIframe` still blocks 
+onload event and the busy indicator may be displayed by browser. Using this
+function does't mean asynchronous loading but still you have a benefit to 
+prevent rendering being blocked.
 
-    createIframe(id, url, styles, [min_height], [stylesheet])
+The all arguments of this function are passed into `createIframe`.
+
+    lazyLoadIframe(id, url, styles, [min_height], [stylesheet])
 
 Notice
 ------
