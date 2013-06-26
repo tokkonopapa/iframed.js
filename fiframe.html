@@ -25,7 +25,9 @@ function onloadIframe() {
 		i = Math.max(e, f, g, h);
 	if (b.clientTop > 0) i += (b.clientTop * 2);
 	var iframe = window.frameElement;
-	window.parent.document.getElementById(iframe.id).style.height = i + "px";
+	var elem = window.parent.document.getElementById(iframe.id);
+	elem.style.height = i + "px";
+	elem.parentNode.style.height = i + "px";
 //	window.parent.console.log("onloadIframe(" + iframe.id + ":" + i + ")");
 	if (i < iframe.min_height) {
 		setTimeout(onloadIframe, 1000);

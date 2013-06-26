@@ -1,12 +1,14 @@
 /*
- * iframed.js v1.1
+ * iframed.js v1.2.1
  * https://github.com/tokkonopapa/iframed.js
  *
  * iframed.js is an asynchronous loader for 3rd party's javascript.
  * It improves site response even if javascript uses document.write()
  * in a recursive way.
  *
- * Copyright 2012, tokkonopapa
+ * NOTICE: Make sure to set the path to 'fiframe.html'
+ *
+ * Copyright 2013, tokkonopapa
  * Free to use and abuse under the MIT license.
  * http://www.opensource.org/licenses/mit-license.php
  */
@@ -20,11 +22,13 @@ function createIframe(id, script_src, style, min_height, stylesheet) {
 
 	// Styles
 	// http://nanto.asablo.jp/blog/2005/10/29/123294
+	// need 'body { background-color: transparent; }' in style sheet.
 	iframe.style.cssText = style;
 	iframe.setAttribute('frameborder', 0);
 	iframe.setAttribute('scrolling', 'no');
 	iframe.setAttribute('marginheight', 0);
 	iframe.setAttribute('marginwidth', 0);
+	iframe.setAttribute('allowtransparency', 'true');
 
 	// Attach first to make body in iframe
 	document.getElementById(id).appendChild(iframe);
@@ -72,8 +76,10 @@ function createIframe(id, script_src, style, min_height, stylesheet) {
 	html += '		i = Math.max(e, f, g, h);';
 	html += '	if (b.clientTop > 0) i += (b.clientTop * 2);';
 	html += '	var iframe = window.frameElement;';
-	html += '	window.parent.document.getElementById(iframe.id).style.height = i + "px";';
-//	html += '	window.parent.console.log("onloadIframe(" + iframe.id + ":" + i + ")");';
+	html += '	var elem = window.parent.document.getElementById(iframe.id);';
+	html += '	elem.style.height = i + "px";';
+	html += '	elem.parentNode.style.height = i + "px";';
+//	html += '	window.parent.console.log("onloadIframe(" + iframe.id + ":" + i + "px)");';
 	html += '	if (i < iframe.min_height) {';
 	html += '		setTimeout(onloadIframe, 1000);';
 	html += '	}';
@@ -91,7 +97,7 @@ function createIframe(id, script_src, style, min_height, stylesheet) {
 	var isOpera = (navigator.userAgent.indexOf('Opera') >= 0);
 	if (isMSIE || isOpera) {
 		// friendly iframe
-		iframe.src = '/fiframe.html';
+		iframe.src = '/path/to/your/iframed/fiframe.html';
 
 		// javascript: URI
 //		iframe.contentWindow.contents = html;
@@ -121,3 +127,17 @@ function lazyLoadIframe(id, script_src, style, min_height, stylesheet) {
 		});
 	}
 }
+
+/*
+ * Debug
+ */
+/*
+if (typeof window.console === 'undefined') {
+	window.console = {};
+	for (var names = "log debug info warn error assert dir dirxml group groupEnd time timeEnd count table trace profile profileEnd".split(" "), n = names.length; --n >= 0;) {
+		window.console[names[n]] = function() {}
+	}
+} else {
+	window.console['log'] = function(v) { alert(v); }
+}
+*/
