@@ -1,16 +1,16 @@
 <!doctype html>
 <html>
 <head>
-<style type="text/css">
+<style>
 	body, iframe { margin: 0; padding: 0; }
 </style>
 <script>
-function onloadIframe() {
+function resizeIframe() {
 	for (var a = document.getElementsByTagName("a"), b = a.length, c; --b >= 0;) {
 		c = a[b].getAttribute("target");
-		if (c == "_top") {
+		if ("_top" === c) {
 			break;
-		} else if (c != "_blank") {
+		} else if ("_blank" !== c) {
 			a[b].setAttribute("target", "_top");
 		}
 	}
@@ -29,13 +29,11 @@ function onloadIframe() {
 	elem.style.height = i + "px";
 	elem.parentNode.style.height = i + "px";
 //	window.parent.console.log("onloadIframe(" + iframe.id + ":" + i + ")");
-	if (i < iframe.min_height) {
-		setTimeout(onloadIframe, 1000);
-	}
+	if (i < iframe.min_height) setTimeout(resizeIframe, 1000);
 }
 </script>
 </head>
-<body>
+<body onload="resizeIframe()">
 <script>
 // Some scripts need canonical link
 for (var links = window.parent.document.getElementsByTagName('link'), n = links.length; --n >= 0;) {
@@ -56,13 +54,6 @@ if (iframe.stylesheet) {
 	link.setAttribute('type', 'text/css');
 	link.setAttribute('href', iframe.stylesheet);
 	document.getElementsByTagName('head')[0].appendChild(link);
-}
-
-// Onload event handler
-if (window.addEventListener) {
-	window.addEventListener("load", onloadIframe, false);
-} else {
-	window.attachEvent("onload", onloadIframe);
 }
 
 // Load script
