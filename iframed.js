@@ -14,7 +14,7 @@
  */
 var _iframed = _iframed || {
 	// 'dynamic', 'static' or other
-	mode: 'static',
+	mode: 'dynamic',
 
 	// path to the static file
 	path: 'fiframe.html'
@@ -111,16 +111,7 @@ function createIframe(id, script_src, style, min_height, stylesheet) {
 
 		var doc = (iframe.contentWindow || iframe.contentDocument);
 		if (doc.document) { doc = doc.document; }
-		try {
-			doc.open();
-		} catch (e) {
-			alert(e);
-		}
-		try {
-			doc.write(html);
-		} catch (e) {
-			alert(e);
-		}
+		doc.open().write(html);
 		doc.close();
 	}
 }
