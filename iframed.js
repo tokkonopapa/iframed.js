@@ -66,7 +66,7 @@ function createIframe(id, script_src, style, min_height, stylesheet) {
 
 		// Add stylesheet
 		if (iframe.stylesheet) {
-			html += '<link rel="stylesheet" mode="text/css" href="' + iframe.stylesheet + '" media="all" \/>';
+			html += '<link rel="stylesheet" type="text/css" href="' + iframe.stylesheet + '" media="all" \/>';
 		}
 
 		// Reset some styles
