@@ -1,5 +1,5 @@
-Asynchronous loading 3rd-party script using iframe
-==================================================
+Asynchronous loading for 3rd-party script using iframe
+======================================================
 
 iframed.js is an asynchronous loader for 3rd party's javascript.
 It improves site response even if javascript uses document.write()
@@ -24,7 +24,7 @@ Load script asynchronously through iframe.
     ID of box element where iframe will be injected.
 
 *   `url` :  
-    URL or path to script.
+    URL or path to the script.
 
 *   `styles` :  
     Styles for iframe. (ex: `"width: 200px; height: 300px"`)
@@ -34,7 +34,7 @@ Load script asynchronously through iframe.
     this value. (ex: `"400px"`, If `0` then no adjustment)
 
 *   `stylesheet` : (option)  
-    URL or path to style sheet for iframe.
+    URL or path to the stylesheet for iframe.
 
 ### Lazy loading ###
 Load script through iframe when onload is fired. `createIframe` still blocks 
@@ -48,8 +48,19 @@ The all arguments of this function are passed into `createIframe`.
 
 Notice
 ------
-Make sure to set the right path to `fiframe.html` of `fiframe.min.html` in the 
+Make sure to set the right path to `fiframe.html` or `fiframe.min.html` in the 
 `iframed.js` or `iframed.min.js` to fit your environment.
+
+Related
+-------
+- [tony4d/sugar](https://github.com/tony4d/sugar)  
+    This has flexible and powerful API. But always requests static friendly 
+    iframe file if it is not in the browser cache.
+
+- [olark/lightningjs](https://github.com/olark/lightningjs)  
+    This is the truly asynchronous javascript loader. But can not be used when 
+    the script include `document.write()`. And this also requires additional 
+    code to wrap the original script. So this is for the JavaScript providers.
 
 License
 -------
