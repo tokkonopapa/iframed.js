@@ -12,12 +12,13 @@
  * Free to use and abuse under the MIT license.
  * http://www.opensource.org/licenses/mit-license.php
  */
-var _iframed = _iframed || {
-	// 'dynamic', 'static' or other
-	mode: 'dynamic',
 
-	// path to the static file
-	path: 'fiframe.html'
+/*
+ * Configration
+ */
+var _iframed = _iframed || {
+	mode: 'mixed', /* 'dynamic', 'static' or other */
+	path: 'fiframe.html' /* path to the static file */
 };
 
 /*
@@ -45,11 +46,9 @@ function createIframe(id, script_src, style, min_height, stylesheet) {
 	// Friendly Iframe should be static for Opera and old IE because of security
 	var isStatic = (navigator.userAgent.indexOf('Opera') >= 0) || (/*@cc_on!@*/false);
 
-	// Attach first to make body in iframe
-	if (('static' === _iframed.mode) || ('dynamic' !== _iframed.mode && isStatic)) {
-		iframe.src = _iframed.path;
-		document.getElementById(id).appendChild(iframe);
-	} else if (('dynamic' === _iframed.mode) || ('static' !== _iframed.mode && !isStatic)) {
+	// Generate iframe dynamically
+	if (('static' !== _iframed.mode && !isStatic) || ('dynamic' === _iframed.mode)) {
+		// Attach first to make body in iframe
 		iframe.src = "javascript:false";
 		document.getElementById(id).appendChild(iframe);
 
@@ -113,6 +112,12 @@ function createIframe(id, script_src, style, min_height, stylesheet) {
 		if (doc.document) { doc = doc.document; }
 		doc.open().write(html);
 		doc.close();
+	}
+
+	// Use static iframe
+	else if (('dynamic' !== _iframed.mode && isStatic) || ('static' === _iframed.mode)) {
+		iframe.src = _iframed.path;
+		document.getElementById(id).appendChild(iframe);
 	}
 }
 
