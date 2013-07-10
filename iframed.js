@@ -18,7 +18,7 @@
  */
 var _iframed = _iframed || {
 	mode: 'mixed', /* 'dynamic', 'static' or other */
-	path: '/path/to/fiframe.html' /* path to the static file */
+	path: 'fiframe.html' /* path to the static file */
 };
 
 /*
@@ -29,8 +29,8 @@ function createIframe(id, script_src, style, min_height, stylesheet) {
 	var iframe = document.createElement('iframe');
 	iframe.id = id + '-iframe';
 	iframe.min_height = min_height ? parseInt (min_height) : 0;
-	iframe.script_src = script_src ? script_src.replace(/"/g, '&quot;').replace(/</g, '&lt;').replace(/>/g, '&gt;') : null;
-	iframe.stylesheet = stylesheet ? stylesheet.replace(/"/g, '&quot;').replace(/</g, '&lt;').replace(/>/g, '&gt;') : null;
+	iframe.script_src = script_src ? encodeURI(script_src) : null;
+	iframe.stylesheet = stylesheet ? encodeURI(stylesheet) : null;
 
 	// Styles
 	// http://nanto.asablo.jp/blog/2005/10/29/123294
@@ -55,6 +55,8 @@ function createIframe(id, script_src, style, min_height, stylesheet) {
 		// Contents in iframe
 		var html = '<head>';
 		html += '<base target="_top">';
+		html += '<meta charset="utf-8">';
+		html += '<meta name="robots" content="noindex">';
 
 		// Some scripts need canonical link
 		for (var links = document.getElementsByTagName('link'), n = links.length; --n >= 0;) {
@@ -90,7 +92,7 @@ function createIframe(id, script_src, style, min_height, stylesheet) {
 		html += 	'var iframe = window.frameElement;';
 		html += 	'var elem = window.parent.document.getElementById(iframe.id);';
 		html += 	'elem.style.height = i + "px";';
-//		html += 	'elem.parentNode.style.height = "auto";'; //'i + "px";';
+		html += '	elem.parentNode.style.height = i + "px";';
 //		html += 	'window.parent.console.log(iframe.id + ":" + i + "px");';
 		html += 	'if (i < iframe.min_height) setTimeout(resizeIframe, 1000);';
 		html += '}';

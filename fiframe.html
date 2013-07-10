@@ -2,6 +2,8 @@
 <html>
 <head>
 <base target="_top">
+<meta charset="utf-8">
+<meta name="robots" content="noindex">
 <style>
 	body, iframe { margin: 0; padding: 0; }
 </style>
@@ -20,7 +22,7 @@ function resizeIframe() {
 	var iframe = window.frameElement;
 	var elem = window.parent.document.getElementById(iframe.id);
 	elem.style.height = i + "px";
-//	elem.parentNode.style.height = "auto"; // i + "px";
+	elem.parentNode.style.height = i + "px";
 //	window.parent.console.log(iframe.id + ":" + i + "px");
 	if (i < iframe.min_height) setTimeout(resizeIframe, 1000);
 }

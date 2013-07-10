@@ -6,7 +6,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-	<title>3rd party's JavaScript asynchronous loading - Basic model</title>
+	<title>3rd party's JavaScript asynchronous loading - Original pattern</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width">
 
@@ -37,14 +37,15 @@
 
 		<article>
 			<header>
-				<h1>Nested document.write()</h1>
-				<p><code>script1A.js</code> loads <code>script1B.js</code> using <code>document.write()</code>, and <code>script2A.js</code> loads <code>script2B.js</code> in the same way. This demo uses <a href="https://github.com/tokkonopapa/iframed.js" title="tokkonopapa/iframed.js on GitHub">iframed.js</a> to load each first script asynchronously.</p>
+				<h1>Original pattern (inline script)</h1>
+				<p>Inline script in the middle of context always blocks building DOM and rendering page. The script (there is <code>document.write()</code> inside of it) in this demo returns a response after a delay of 5 seconds, so displaying a side widget will be blocked.</p>
 			</header>
 			<section>
 				<h2>article section h2</h2>
 				<!-- JavaScript Widget -->
-				<div id="widget1"></div>
-				<div id="widget2"></div>
+				<div id="gist">
+					<script src="http://tokkono.cute.coocan.jp/demo/libs/sleep.php?wait=5000&type=js&url=https://gist.github.com/tokkonopapa/1577100.js?file=tag_cloud.rb"></script>
+				</div>
 			</section>
 			<section>
 				<h2>article section h2</h2>
@@ -69,18 +70,6 @@
 		<h3>footer</h3>
 	</footer>
 </div>
-
-<script>
-	var _iframed = {
-		mode: 'static', /* 'dynamic', 'static' or other */
-		path: 'fiframe.html' /* path to the static file */
-	};
-</script>
-<script src="iframed.js"></script>
-<script>
-	createIframe('widget1', 'js/script1A.js', 'width:100%; height:0;');
-	createIframe('widget2', 'js/script2A.js', 'width:100%; height:0;');
-</script>
 
 <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
