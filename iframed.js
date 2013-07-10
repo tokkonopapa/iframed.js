@@ -54,6 +54,9 @@ function createIframe(id, script_src, style, min_height, stylesheet) {
 
 		// Contents in iframe
 		var html = '<head>';
+		html += '<base target="_top">';
+		html += '<meta charset="utf-8">';
+		html += '<meta name="robots" content="noindex">';
 
 		// Some scripts need canonical link
 		for (var links = document.getElementsByTagName('link'), n = links.length; --n >= 0;) {
@@ -76,14 +79,6 @@ function createIframe(id, script_src, style, min_height, stylesheet) {
 		// Onload event handler
 		html += '<script>';
 		html += 'function resizeIframe() {';
-		html += '	for (var a = document.getElementsByTagName("a"), b = a.length, c; --b >= 0;) {';
-		html += '		c = a[b].getAttribute("target");';
-		html += '		if ("_top" === c) {';
-		html += '			break;';
-		html += '		} else if ("_blank" !== c) {';
-		html += '			a[b].setAttribute("target", "_top");';
-		html += '		}';
-		html += '	}';
 		html += '	var a = document.body,';
 		html += '		b = document.documentElement,';
 		html += '		c = Math.max(a.offsetTop, 0),';
@@ -98,7 +93,7 @@ function createIframe(id, script_src, style, min_height, stylesheet) {
 		html += '	var elem = window.parent.document.getElementById(iframe.id);';
 		html += '	elem.style.height = i + "px";';
 		html += '	elem.parentNode.style.height = i + "px";';
-//		html += '	window.parent.console.log("onloadIframe(" + iframe.id + ":" + i + "px)");';
+//		html += '	window.parent.console.log(iframe.id + ":" + i + "px");';
 		html += '	if (i < iframe.min_height) setTimeout(resizeIframe, 1000);';
 		html += '}';
 		html += '<\/script>';
@@ -115,6 +110,7 @@ function createIframe(id, script_src, style, min_height, stylesheet) {
 	}
 
 	// Use static iframe
+	// @link http://code.google.com/p/browsersec/wiki/Part2#Same-origin_policy_for_DOM_access
 	else if (('dynamic' !== _iframed.mode && isStatic) || ('static' === _iframed.mode)) {
 		iframe.src = _iframed.path;
 		document.getElementById(id).appendChild(iframe);

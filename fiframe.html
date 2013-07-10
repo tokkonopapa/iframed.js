@@ -1,19 +1,14 @@
 <!doctype html>
 <html>
 <head>
+<base target="_top">
+<meta charset="utf-8">
+<meta name="robots" content="noindex">
 <style>
 	body, iframe { margin: 0; padding: 0; }
 </style>
 <script>
 function resizeIframe() {
-	for (var a = document.getElementsByTagName("a"), b = a.length, c; --b >= 0;) {
-		c = a[b].getAttribute("target");
-		if ("_top" === c) {
-			break;
-		} else if ("_blank" !== c) {
-			a[b].setAttribute("target", "_top");
-		}
-	}
 	var a = document.body,
 		b = document.documentElement,
 		c = Math.max(a.offsetTop, 0),
@@ -28,7 +23,7 @@ function resizeIframe() {
 	var elem = window.parent.document.getElementById(iframe.id);
 	elem.style.height = i + "px";
 	elem.parentNode.style.height = i + "px";
-//	window.parent.console.log("onloadIframe(" + iframe.id + ":" + i + ")");
+//	window.parent.console.log(iframe.id + ":" + i + "px");
 	if (i < iframe.min_height) setTimeout(resizeIframe, 1000);
 }
 </script>
