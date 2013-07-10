@@ -39,7 +39,7 @@
 		<article>
 			<header>
 				<h1>Iframed pattern (friendly iframe)</h1>
-				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam sodales urna non odio egestas tempor. Nunc vel vehicula ante. Etiam bibendum iaculis libero, eget molestie nisl pharetra in. In semper consequat est, eu porta velit mollis nec.</p>
+				<p>Load script asynchronously using friendly iframe. In this demo, the script (there is <code>document.write()</code> inside of it) will be loaded after onload fired (lazy loading). This leads the busy indicator of the browser does not work so busy.</p>
 			</header>
 			<section>
 				<h2>article section h2</h2>
@@ -78,7 +78,7 @@
 </script>
 <script src="iframed.js"></script>
 <script>
-	createIframe('gist', 'https://gist.github.com/1577100.js?file=tag_cloud.rb', 'width:98%; height:0;');
+	lazyLoadIframe('gist', 'https://gist.github.com/tokkonopapa/1577100.js?file=tag_cloud.rb', 'width:98%; height:0;');
 </script>
 
 </body>

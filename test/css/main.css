@@ -83,8 +83,8 @@ body {
 }
 
 .header-container,
-.footer-container,
-.main aside {
+.footer-container {
+/*.main aside {*/
     background: #f16529;
 }
 
@@ -115,7 +115,7 @@ nav a {
     font-weight: bold;
 
     color: white;
-    background: #e44d26;
+/*  background: #e44d26;*/
 }
 
 nav a:hover,
@@ -140,7 +140,7 @@ nav a:hover {
 }
 
 .main aside {
-    color: white;
+/*  color: white;*/
     padding: 0px 5% 10px;
 }
 
@@ -174,9 +174,9 @@ nav a:hover {
 /* ==========================================================================
    Author's custom styles
    ========================================================================== */
-
-
-
+code pre.prettyprint {
+    line-height: 1.4em;
+}
 
 
 
