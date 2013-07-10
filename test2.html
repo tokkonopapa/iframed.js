@@ -6,7 +6,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-	<title>3rd party's JavaScript asynchronous loading - Basic model</title>
+	<title>3rd party's JavaScript asynchronous loading - Replace pattern</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width">
 
@@ -37,14 +37,13 @@
 
 		<article>
 			<header>
-				<h1>Nested document.write()</h1>
-				<p><code>script1A.js</code> loads <code>script1B.js</code> using <code>document.write()</code>, and <code>script2A.js</code> loads <code>script2B.js</code> in the same way. This demo uses <a href="https://github.com/tokkonopapa/iframed.js" title="tokkonopapa/iframed.js on GitHub">iframed.js</a> to load each first script asynchronously.</p>
+				<h1>Replace pattern (script at bottom)</h1>
+				<p>Inline script just before the <code>&lt;/body&gt;</code> does not block most of the rendering of the page. This demo loads the script (there is <code>document.write()</code> inside of it) at the bottom, then replaces it with a block in the middle of context.</p>
 			</header>
 			<section>
 				<h2>article section h2</h2>
 				<!-- JavaScript Widget -->
-				<div id="widget1"></div>
-				<div id="widget2"></div>
+				<div id="gist"></div>
 			</section>
 			<section>
 				<h2>article section h2</h2>
@@ -70,16 +69,23 @@
 	</footer>
 </div>
 
+<!-- Replace pattern -->
+<div id="gist-hide" style="display:none; visibility:hidden;">
+	<script src="http://tokkono.cute.coocan.jp/demo/libs/sleep.php?wait=5000&type=js&url=https://gist.github.com/tokkonopapa/1577100.js?file=tag_cloud.rb"></script>
+</div>
+
 <script>
-	var _iframed = {
-		mode: 'static', /* 'dynamic', 'static' or other */
-		path: 'fiframe.html' /* path to the static file */
-	};
-</script>
-<script src="iframed.js"></script>
-<script>
-	createIframe('widget1', 'js/script1A.js', 'width:100%; height:0;');
-	createIframe('widget2', 'js/script2A.js', 'width:100%; height:0;');
+(function() {
+	var id = "gist".split(" ");
+	var n = id.length, i, src, dst;
+	for (i = 0; i < n; i++) {
+		src = document.getElementById(id[i] + '-hide');
+		dst = document.getElementById(id[i]);
+		dst.parentNode.replaceChild(src, dst);
+		src.style.display = 'block';
+		src.style.visibility = 'visible';
+	}
+})();
 </script>
 
 <script>
