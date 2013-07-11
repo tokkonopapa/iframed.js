@@ -14,7 +14,7 @@ iframed.js includes two method.
 
 Usage
 -----
-See samples on [GitHub Page](http://tokkonopapa.github.io/iframed.js/).
+See samples on [gh-pages](http://tokkonopapa.github.io/iframed.js/).
 
 ### Asynchronous loading ###
 
@@ -39,10 +39,10 @@ Load script asynchronously through iframe.
     URL or path to the stylesheet for iframe.
 
 ### Lazy loading ###
-Load script through iframe when onload is fired. `createIframe` still blocks 
-onload event and the busy indicator may be displayed by browser. Using this
-function does't mean asynchronous loading but still you have a benefit to 
-prevent rendering being blocked.
+Load script through iframe when `onload` is fired. `createIframe` still blocks 
+`onload` event and the busy indicator of browser may work hard during loading.
+Using this function does not mean an asynchronous loading but still you have a 
+benefit to prevent rendering being blocked.
 
 The all arguments of this function are passed into `createIframe`.
 
