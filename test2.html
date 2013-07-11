@@ -106,8 +106,7 @@
 		src = document.getElementById(id[i] + '-hide');
 		dst = document.getElementById(id[i]);
 		dst.parentNode.replaceChild(src, dst);
-		src.style.display = 'block';
-		src.style.visibility = 'visible';
+		src.style.cssText = 'display: block; visibility: visible';
 	}
 })();
 </script>
