@@ -12,6 +12,7 @@
 
 	<link rel="stylesheet" href="css/normalize.min.css">
 	<link rel="stylesheet" href="css/main.css">
+	<link rel="stylesheet" href="google-code-prettify/sunburst.css">
 </head>
 <body>
 <!--[if lt IE 7]>
@@ -41,18 +42,24 @@
 				<p><code>script1A.js</code> loads <code>script1B.js</code> using <code>document.write()</code>, and <code>script2A.js</code> loads <code>script2B.js</code> in the same way. This demo uses <a href="https://github.com/tokkonopapa/iframed.js" title="tokkonopapa/iframed.js on GitHub">iframed.js</a> to load each first script asynchronously.</p>
 			</header>
 			<section>
-				<h2>article section h2</h2>
+				<h2>Sample</h2>
 				<!-- JavaScript Widget -->
 				<div id="widget1"></div>
 				<div id="widget2"></div>
 			</section>
 			<section>
-				<h2>article section h2</h2>
-				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam sodales urna non odio egestas tempor. Nunc vel vehicula ante. Etiam bibendum iaculis libero, eget molestie nisl pharetra in. In semper consequat est, eu porta velit mollis nec. Curabitur posuere enim eget turpis feugiat tempor. Etiam ullamcorper lorem dapibus velit suscipit ultrices. Proin in est sed erat facilisis pharetra.</p>
+				<h2>Codes</h2>
+				<code><pre class="prettyprint">
+&lt;div id="widget1"&gt;&lt;/div&gt;
+&lt;div id="widget2"&gt;&lt;/div&gt;
+...
+&lt;script src="iframed.min.js"&gt;&lt;/script&gt;
+&lt;script&gt;
+    createIframe('widget1', 'script1A.js', 'width:100%; height:0');
+    createIframe('widget2', 'script2A.js', 'width:100%; height:0');
+&lt;/script&gt;</pre></code>
 			</section>
 			<footer>
-				<h3>article footer h3</h3>
-				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam sodales urna non odio egestas tempor. Nunc vel vehicula ante. Etiam bibendum iaculis libero, eget molestie nisl pharetra in. In semper consequat est, eu porta velit mollis nec. Curabitur posuere enim eget turpis feugiat tempor.</p>
 			</footer>
 		</article>
 
@@ -70,6 +77,18 @@
 	</footer>
 </div>
 
+<script src="google-code-prettify/prettify.js"></script>
+<script>prettyPrint();</script>
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-42366765-1', 'tokkonopapa.github.io');
+  ga('send', 'pageview');
+</script>
+
 <script>
 	var _iframed = {
 		mode: 'static', /* 'dynamic', 'static' or other */
@@ -80,15 +99,6 @@
 <script>
 	createIframe('widget1', 'js/script1A.js', 'width:100%; height:0;');
 	createIframe('widget2', 'js/script2A.js', 'width:100%; height:0;');
-</script>
-
-<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-  ga('create', 'UA-42366765-1', 'tokkonopapa.github.io');
-  ga('send', 'pageview');
 </script>
 
 </body>
