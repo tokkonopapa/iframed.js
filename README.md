@@ -14,6 +14,8 @@ iframed.js includes two method.
 
 Usage
 -----
+See samples on [GitHub Page](http://tokkonopapa.github.io/iframed.js/).
+
 ### Asynchronous loading ###
 
 Load script asynchronously through iframe.
