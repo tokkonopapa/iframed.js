@@ -18,7 +18,7 @@
  */
 var _iframed = _iframed || {
 	mode: 'mixed', /* 'dynamic', 'static' or other */
-	path: 'fiframe.html' /* path to the static file */
+	path: '/path/to/fiframe.html' /* path to the static file */
 };
 
 /*
