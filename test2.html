@@ -12,6 +12,7 @@
 
 	<link rel="stylesheet" href="css/normalize.min.css">
 	<link rel="stylesheet" href="css/main.css">
+	<link rel="stylesheet" href="google-code-prettify/sunburst.css">
 </head>
 <body>
 <!--[if lt IE 7]>
@@ -41,17 +42,27 @@
 				<p>Inline script just before the <code>&lt;/body&gt;</code> does not block most of the rendering of the page. This demo loads the script (there is <code>document.write()</code> inside of it) at the bottom, then replaces it with a block in the middle of context.</p>
 			</header>
 			<section>
-				<h2>article section h2</h2>
+				<h2>Sample</h2>
 				<!-- JavaScript Widget -->
 				<div id="gist"></div>
 			</section>
 			<section>
-				<h2>article section h2</h2>
-				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam sodales urna non odio egestas tempor. Nunc vel vehicula ante. Etiam bibendum iaculis libero, eget molestie nisl pharetra in. In semper consequat est, eu porta velit mollis nec. Curabitur posuere enim eget turpis feugiat tempor. Etiam ullamcorper lorem dapibus velit suscipit ultrices. Proin in est sed erat facilisis pharetra.</p>
+				<code><pre class="prettyprint">
+&lt;div id="gist"&gt;&lt;/div&gt;
+...
+&lt;div id="gist-hide" style="display:none; visibility:hidden"&gt;
+    &lt;script src="https://gist.github.com/..."&gt;&lt;/script&gt;
+&lt;/div&gt;
+&lt;script&gt;
+    var id = 'gist',
+        src = document.getElementById(id + '-hide'),
+        dst = document.getElementById(id);
+    dst.parentNode.replaceChild(src, dst);
+    src.style.cssText = 'display: block; visibility: visible';
+&lt;/script&gt;
+&lt;/body&gt;</pre></code>
 			</section>
 			<footer>
-				<h3>article footer h3</h3>
-				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam sodales urna non odio egestas tempor. Nunc vel vehicula ante. Etiam bibendum iaculis libero, eget molestie nisl pharetra in. In semper consequat est, eu porta velit mollis nec. Curabitur posuere enim eget turpis feugiat tempor.</p>
 			</footer>
 		</article>
 
@@ -74,6 +85,18 @@
 	<script src="http://tokkono.cute.coocan.jp/demo/libs/sleep.php?wait=5000&type=js&url=https://gist.github.com/tokkonopapa/1577100.js?file=tag_cloud.rb"></script>
 </div>
 
+<script src="google-code-prettify/prettify.js"></script>
+<script>prettyPrint();</script>
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-42366765-1', 'tokkonopapa.github.io');
+  ga('send', 'pageview');
+</script>
+
 <script>
 (function() {
 	var id = "gist".split(" ");
@@ -86,15 +109,6 @@
 		src.style.visibility = 'visible';
 	}
 })();
-</script>
-
-<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-  ga('create', 'UA-42366765-1', 'tokkonopapa.github.io');
-  ga('send', 'pageview');
 </script>
 
 </body>
