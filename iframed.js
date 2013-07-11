@@ -92,7 +92,7 @@ function createIframe(id, script_src, style, min_height, stylesheet) {
 		html += '	var iframe = window.frameElement;';
 		html += '	var elem = window.parent.document.getElementById(iframe.id);';
 		html += '	elem.style.height = i + "px";';
-		html += '	elem.parentNode.style.height = i + "px";';
+//		html += '	elem.parentNode.style.height = "auto";'; //'i + "px";';
 //		html += '	window.parent.console.log(iframe.id + ":" + i + "px");';
 		html += '	if (i < iframe.min_height) setTimeout(resizeIframe, 1000);';
 		html += '}';
