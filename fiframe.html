@@ -22,7 +22,7 @@ function resizeIframe() {
 	var iframe = window.frameElement;
 	var elem = window.parent.document.getElementById(iframe.id);
 	elem.style.height = i + "px";
-	elem.parentNode.style.height = i + "px";
+//	elem.parentNode.style.height = "auto"; // i + "px";
 //	window.parent.console.log(iframe.id + ":" + i + "px");
 	if (i < iframe.min_height) setTimeout(resizeIframe, 1000);
 }
