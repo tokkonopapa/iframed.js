@@ -13,7 +13,6 @@ textarea {
 body {
     font-size: 1em;
     line-height: 1.4;
-    background: f8f8f8;
 }
 
 ::-moz-selection {
@@ -179,17 +178,36 @@ nav a:hover {
 code pre.prettyprint {
     line-height: 1.4em;
 }
-
-
-
-
-
-
-
-
-
-
-
+#site-navigation {
+    text-align: center;
+}
+#site-navigation ul.nav-menu {
+    display: none;
+}
+#site-navigation ul.nav-menu.toggled-on {
+    display: block;
+}
+.menu-toggle {
+    cursor: pointer;
+}
+.menu-toggle:hover {
+    text-decoration: none;
+}
+.menu-toggle:active,
+.menu-toggle.toggled-on {
+    border: none;
+}
+@media screen and (min-width: 600px) {
+     nav a {
+        float: left;
+    }
+    .menu-toggle {
+        display: none;
+    }
+    #site-navigation ul.nav-menu {
+        display: block !important;
+    }
+}
 
 /* ==========================================================================
    Media Queries
@@ -202,10 +220,10 @@ code pre.prettyprint {
    ==================== */
 
     nav a {
-        float: left;
+        /*float: left;*/
         /*width: 27%;*/
         margin: 0 1.7%;
-        padding: 15px 2%;
+        padding: 15px 1%;
         margin-bottom: 0;
     }
 
@@ -247,9 +265,9 @@ code pre.prettyprint {
     WIDE: Menu
    ============ */
 
-    .title {
+/*  .title {
         float: left;
-    }
+    }*/
 
     nav {
         float: right;
