@@ -187,6 +187,9 @@ code pre.prettyprint {
 #site-navigation ul.nav-menu.toggled-on {
     display: block;
 }
+#site-navigation ul.nav-menu li a.current_page {
+    border-bottom: 5px solid #ffdb84;
+}
 .menu-toggle {
     cursor: pointer;
 }
@@ -223,7 +226,7 @@ code pre.prettyprint {
         /*float: left;*/
         /*width: 27%;*/
         margin: 0 1.7%;
-        padding: 15px 1%;
+        padding: 15px 1% 10px 1%;
         margin-bottom: 0;
     }
 
