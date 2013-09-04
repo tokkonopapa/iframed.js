@@ -1,5 +1,5 @@
 /*
- * iframed.js v1.3
+ * iframed.js v1.3.1
  * https://github.com/tokkonopapa/iframed.js
  *
  * iframed.js is an asynchronous loader for 3rd party's javascript.
@@ -71,28 +71,28 @@ function createIframe(id, script_src, style, min_height, stylesheet) {
 
 		// Reset some styles
 		html += '<style>';
-		html += '	body { margin: 0; padding: 0; }';
+		html += 	'body { margin: 0; padding: 0; }';
 		html += '<\/style>';
 
 		// Onload event handler
 		html += '<script>';
 		html += 'function resizeIframe() {';
-		html += '	var a = document.body,';
-		html += '		b = document.documentElement,';
-		html += '		c = Math.max(a.offsetTop, 0),';
-		html += '		d = Math.max(b.offsetTop, 0),';
-		html += '		e = a.scrollHeight + c,';
-		html += '		f = a.offsetHeight + c,';
-		html += '		g = b.scrollHeight + d,';
-		html += '		h = b.offsetHeight + d,';
-		html += '		i = Math.max(e, f, g, h);';
-		html += '	if (b.clientTop > 0) i += (b.clientTop * 2);';
-		html += '	var iframe = window.frameElement;';
-		html += '	var elem = window.parent.document.getElementById(iframe.id);';
-		html += '	elem.style.height = i + "px";';
-//		html += '	elem.parentNode.style.height = "auto";'; //'i + "px";';
-//		html += '	window.parent.console.log(iframe.id + ":" + i + "px");';
-		html += '	if (i < iframe.min_height) setTimeout(resizeIframe, 1000);';
+		html += 	'var a = document.body,';
+		html += 		'b = document.documentElement,';
+		html += 		'c = Math.max(a.offsetTop, 0),';
+		html += 		'd = Math.max(b.offsetTop, 0),';
+		html += 		'e = a.scrollHeight + c,';
+		html += 		'f = a.offsetHeight + c,';
+		html += 		'g = b.scrollHeight + d,';
+		html += 		'h = b.offsetHeight + d,';
+		html += 		'i = Math.max(e, f, g, h);';
+		html += 	'if (b.clientTop > 0) i += (b.clientTop * 2);';
+		html += 	'var iframe = window.frameElement;';
+		html += 	'var elem = window.parent.document.getElementById(iframe.id);';
+		html += 	'elem.style.height = i + "px";';
+//		html += 	'elem.parentNode.style.height = "auto";'; //'i + "px";';
+//		html += 	'window.parent.console.log(iframe.id + ":" + i + "px");';
+		html += 	'if (i < iframe.min_height) setTimeout(resizeIframe, 1000);';
 		html += '}';
 		html += '<\/script>';
 
