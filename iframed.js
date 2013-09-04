@@ -118,16 +118,22 @@ function createIframe(id, script_src, style, min_height, stylesheet) {
 /*
  * Helper function to invoke creating iframe after onload
  */
-function lazyLoadIframe(id, script_src, style, min_height, stylesheet) {
+function lazyStart(callback) {
+	var args = ([].slice.call(arguments)).slice(1);
 	if (window.addEventListener) {
 		window.addEventListener('load', function() {
-			createIframe(id, script_src, style, min_height, stylesheet);
+			callback.apply({}, args);
 		}, false);
 	} else {
 		window.attachEvent('onload', function() {
-			createIframe(id, script_src, style, min_height, stylesheet);
+			callback.apply({}, args);
 		});
 	}
+}
+
+/* start script after onload */
+function lazyLoadIframe(id, script_src, style, min_height, stylesheet) {
+	lazyStart(createIframe, id, script_src, style, min_height, stylesheet);
 }
 
 /*
